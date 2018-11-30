@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace evaluation6
 {
-    public partial class Form1 : Form
+    public partial class Form2 : Form
     {
-        public Form1()
+        public Form2()
         {
             InitializeComponent();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -22,13 +32,14 @@ namespace evaluation6
 
         }
 
-        private void log_Click(object sender, EventArgs e)
+        private void label4_Click(object sender, EventArgs e)
         {
-            if(usrnm.Text=="rose"&& pass.Text=="123")
-            {
-                Form2 f2 = new Form2();
-                f2.Show();
-            }
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
