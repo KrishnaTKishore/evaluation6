@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
 using System.Drawing.Imaging;
-
 namespace evaluation6
 {
     public partial class Form2 : Form
@@ -50,6 +49,8 @@ namespace evaluation6
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 img.Text = openFileDialog1.FileName;
+             pictureBox1.ImageLocation = img.Text;
+          // pictureBox1.Image = Convert.ToSByte(openFileDialog1.FileName);
         }
 
         private void upload_Click(object sender, EventArgs e)
@@ -58,7 +59,7 @@ namespace evaluation6
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
             Byte[] mypic = File.ReadAllBytes(openFileDialog1.FileName);
-            cmd.CommandText = "Insert into eval values('" + id.Text + "','" + name.Text + "','" + sec.Text + "','" + branch.Text + "','" + date.Text + "','" + pictureBox1.Image + "')";
+            cmd.CommandText = "Insert into evaluate values('" + id.Text + "','" + name.Text + "','" + sec.Text + "','" + branch.Text + "','" + date.Text + "','" + pictureBox1.Image + "')";
             cmd.ExecuteNonQuery();
             con.Close();
             MessageBox.Show("saved");
@@ -68,7 +69,7 @@ namespace evaluation6
         private void show_Click(object sender, EventArgs e)
         {
             //   string con = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database1.mdf;Integrated Security=True";
-            string cmd = "Select * from eval";
+            string cmd = "Select Id,name,section,branch,date_of_birth from evaluate  where Id='" + id.Text+"'"; 
             SqlDataAdapter dp = new SqlDataAdapter(cmd, con);
             //  SqlCommandBuilder cb = new SqlCommandBuilder(dp);
             DataTable dt = new DataTable();
@@ -77,7 +78,20 @@ namespace evaluation6
             bs.DataSource = dt;
 
             dataGridView1.DataSource = bs;
+            
 
+        }
+
+        private void showimg_Click(object sender, EventArgs e)
+        {
+            SqlDataAdapter da = new SqlDataAdapter("Select picture from evaluate where Id='" + id.Text + "'", con);
+            DataTable d = new DataTable();
+            da.Fill(d);
+            Byte[] p = new byte[0];
+            p = (byte[])d.Rows[0][0];
+
+            MemoryStream ms = new MemoryStream(p);
+            pictureBox1.Image = Image.FromStream(ms);
         }
     }
 }

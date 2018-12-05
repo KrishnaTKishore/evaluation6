@@ -46,6 +46,7 @@
             this.img = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.date = new System.Windows.Forms.DateTimePicker();
+            this.showimg = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -202,11 +203,22 @@
             this.date.Size = new System.Drawing.Size(200, 20);
             this.date.TabIndex = 17;
             // 
+            // showimg
+            // 
+            this.showimg.Location = new System.Drawing.Point(222, 343);
+            this.showimg.Name = "showimg";
+            this.showimg.Size = new System.Drawing.Size(75, 23);
+            this.showimg.TabIndex = 18;
+            this.showimg.Text = "Photo";
+            this.showimg.UseVisualStyleBackColor = true;
+            this.showimg.Click += new System.EventHandler(this.showimg_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.showimg);
             this.Controls.Add(this.date);
             this.Controls.Add(this.img);
             this.Controls.Add(this.dataGridView1);
@@ -253,5 +265,6 @@
         private System.Windows.Forms.TextBox img;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.DateTimePicker date;
+        private System.Windows.Forms.Button showimg;
     }
 }
